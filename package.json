@@ -1,7 +1,7 @@
 {
-  "name": "bella-napoli-pizzeria-backend",
+  "name": "pizza-roma-backend",
   "version": "1.0.0",
-  "description": "Express + MongoDB backend for the Bella Napoli Pizzeria website (menu, deals, and orders API).",
+  "description": "Express + MongoDB backend for the Pizza Roma website (menu, deals, and orders API).",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
