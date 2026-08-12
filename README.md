@@ -47,7 +47,7 @@ the static frontend (`index.html` / `style.css` / `script.js`) from the `public`
 
 1. Install dependencies:
    ```bash
-   cd server
+   cd pizza-roma
    npm install
    ```
 
