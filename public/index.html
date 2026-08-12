@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <title>Pizza Roma - Authentic Handcrafted Italian Pizza</title>
+
+    <meta
+        name="description"
+        content="Pizza Roma — wood-fired, hand-stretched, authentic Italian pizza. Order online, browse our full menu, and enjoy weekly deals."
+    >
+
+    <!-- Google Fonts & FontAwesome Icons -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    >
+
+    <!-- jsPDF for generating the downloadable order invoice -->
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+    ></script>
+
+    <!-- Main Stylesheet -->
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<!-- ==================== NAVIGATION BAR ==================== -->
+
+<header class="navbar-header">
+
+    <nav class="navbar container">
+
+        <!-- Logo -->
+        
+<a href="#home" class="logo">
+    <i class="fa-solid fa-pizza-slice logo-icon"></i>
+    <span>Pizza <span class="highlight">Roma</span></span>
+</a>
+
+        <!-- Navigation Links / Hamburger Menu -->
+        <ul class="nav-links" id="navLinks">
+
+            <li>
+                <a href="#home" class="nav-link active">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="#about" class="nav-link">
+                    About Us
+                </a>
+            </li>
+
+            <li>
+                <a href="#menu" class="nav-link">
+                    Menu
+                </a>
+            </li>
+
+            <li>
+                <a href="#deals" class="nav-link">
+                    Special Deals
+                </a>
+            </li>
+
+            <li>
+                <a href="#contact" class="nav-link">
+                    Contact
+                </a>
+            </li>
+
+            <!-- Authentication Inside Hamburger Menu -->
+            <li class="mobile-auth-item">
+
+                <div class="auth-actions" id="authActions">
+
+                    <!-- Login -->
+                    <button
+                        id="loginBtn"
+                        class="auth-btn login-btn"
+                        type="button"
+                    >
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <span>Login</span>
+                    </button>
+
+                    <!-- Register -->
+                    <button
+                        id="registerBtn"
+                        class="auth-btn register-btn"
+                        type="button"
+                    >
+                        <i class="fa-solid fa-user-plus"></i>
+                        <span>Register</span>
+                    </button>
+
+                </div>
+
+            </li>
+
+        </ul>
+
+        <!-- Right Side Actions -->
+        <div class="nav-actions">
+
+            <!-- Theme Toggle -->
+            <button
+                id="themeToggleBtn"
+                class="theme-toggle-btn"
+                type="button"
+                aria-label="Toggle theme"
+            >
+                <i class="fa-solid fa-moon"></i>
+            </button>
+
+            <!-- Cart -->
+            <button
+                id="cartBtn"
+                class="cart-btn"
+                type="button"
+                aria-label="Open cart"
+            >
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="cartBadge" class="cart-badge">0</span>
+            </button>
+
+            <!-- Hamburger -->
+            <button
+                id="hamburgerBtn"
+                class="hamburger-btn"
+                type="button"
+                aria-label="Toggle menu"
+                aria-controls="navLinks"
+                aria-expanded="false"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+        </div>
+
+    </nav>
+
+</header>
+
+    <!-- Mobile nav overlay -->
+    <div id="navOverlay" class="nav-overlay"></div>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section id="home" class="hero-section">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="badge">🔥 Wood-Fired &amp; Made to Order</span>
+                <h1 class="hero-title">Handcrafted Pizza Made with Pure Italian Love</h1>
+                <p class="hero-description">Experience the true taste of Naples: 100% organic ingredients, house-made mozzarella, and sourdough fermented for 48 hours, baked in a traditional brick oven.</p>
+                <div class="hero-buttons">
+                    <a href="#menu" class="btn btn-primary">Explore Menu</a>
+                    <a href="#contact" class="btn btn-outline">Book a Table</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat"><strong>25+</strong><span>Years of craft</span></div>
+                    <div class="hero-stat"><strong>18</strong><span>Signature pizzas</span></div>
+                    <div class="hero-stat"><strong>4.9★</strong><span>Customer rating</span></div>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=80" alt="Delicious wood-fired artisan pizza" class="hero-img" loading="eager">
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ABOUT SECTION ==================== -->
+    <section id="about" class="about-section section-padding">
+        <div class="container about-container">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=800&q=80" alt="Chef tending the wood-fired pizza oven" loading="lazy">
+            </div>
+            <div class="about-content">
+                <h2 class="section-title">Our Tradition &amp; Secrets</h2>
+                <p class="section-subtitle">Baked in a traditional wood-fired brick oven at 900°F.</p>
+                <p class="text-muted">
+    Founded in 1998, Pizza Roma brings the authentic taste of Italy right to your doorstep.
+    Every pizza is stretched by hand and topped with San Marzano tomatoes imported directly from Italy.
+</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fa-solid fa-fire-burner"></i>
+                        <h4>Wood-Fired Oven</h4>
+                        <p>Baked in 90 seconds for a crisp, smoky crust.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fa-solid fa-wheat-awn"></i>
+                        <h4>Organic Dough</h4>
+                        <p>48-hour natural cold fermentation.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fa-solid fa-leaf"></i>
+                        <h4>Fresh Ingredients</h4>
+                        <p>Locally sourced produce, daily deliveries.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <h4>Fast Delivery</h4>
+                        <p>Hot pizza at your door in 30 minutes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== MENU SECTION ==================== -->
+    <section id="menu" class="menu-section section-padding bg-alt">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Explore Our Pizza Selection</h2>
+                <p class="section-subtitle">Choose from our classic Italian recipes or gourmet specialty pizzas — all prices shown per pizza.</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Pizzas</button>
+                <button class="filter-btn" data-filter="classic">Classic</button>
+                <button class="filter-btn" data-filter="specialty">Specialty</button>
+                <button class="filter-btn" data-filter="veggie">Vegetarian</button>
+                <button class="filter-btn" data-filter="spicy">Spicy</button>
+            </div>
+
+            <!-- Pizza Menu Grid (rendered by script.js) -->
+            <div id="pizzaGrid" class="pizza-grid">
+                <!-- Fallback content / JS renders items here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SPECIAL DEALS ==================== -->
+    <section id="deals" class="deals-section section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Weekly Pizza Deals</h2>
+                <p class="section-subtitle">Great combos for family, friends, and solo pizza lovers.</p>
+            </div>
+            <div class="deals-grid">
+                <div class="deal-card">
+                    <div class="deal-tag">Save 25%</div>
+                    <h3>Family Feast Combo</h3>
+                    <p>2 Large Specialty Pizzas, 1 Garlic Bread, 2L Drink.</p>
+                    <span class="deal-price">$34.99</span>
+                    <button class="btn btn-sm btn-primary add-deal-btn" data-id="deal-1">Claim Deal</button>
+                </div>
+                <div class="deal-card highlight-deal">
+                    <div class="deal-tag">Best Value</div>
+                    <h3>Pizza &amp; Beer Night</h3>
+                    <p>Any XL Classic Pizza + 4 Craft Sodas / Beers.</p>
+                    <span class="deal-price">$28.99</span>
+                    <button class="btn btn-sm btn-primary add-deal-btn" data-id="deal-2">Claim Deal</button>
+                </div>
+                <div class="deal-card">
+                    <div class="deal-tag">Lunch Special</div>
+                    <h3>Solo Combo</h3>
+                    <p>1 Medium Margherita + Soft Drink + Garlic Dip.</p>
+                    <span class="deal-price">$14.99</span>
+                    <button class="btn btn-sm btn-primary add-deal-btn" data-id="deal-3">Claim Deal</button>
+                </div>
+                <div class="deal-card">
+                    <div class="deal-tag">Kids Menu</div>
+                    <h3>Little Chef Box</h3>
+                    <p>1 Small Margherita + Juice Box + Sticker Pack.</p>
+                    <span class="deal-price">$9.99</span>
+                    <button class="btn btn-sm btn-primary add-deal-btn" data-id="deal-4">Claim Deal</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- ==================== RESERVATION / ORDER SECTION ==================== -->
+<section id="contact" class="contact-section section-padding bg-alt">
+    <div class="container contact-container">
+
+        <div class="contact-info">
+
+            <h2 class="section-title">Visit or Contact Us</h2>
+
+            <p>
+                Have questions or need custom catering for an event?
+            </p>
+
+            <ul class="contact-details">
+
+                <li>
+                    <i class="fa-solid fa-location-dot"></i>
+                    123 Pizza Street, Flavor Town, NY 10001
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-phone"></i>
+                    +1 (555) 839-2019
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-envelope"></i>
+                    order@pizzaroma.com
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-clock"></i>
+                    Mon–Sun: 11:00 AM – 11:00 PM
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <form id="orderForm" class="contact-form">
+
+            <h3>Quick Online Inquiry</h3>
+
+            <div class="form-group">
+                <input
+                    type="text"
+                    id="customerName"
+                    required
+                    placeholder="Your Name"
+                >
+            </div>
+
+            <div class="form-group">
+                <input
+                    type="email"
+                    id="customerEmail"
+                    required
+                    placeholder="Your Email"
+                >
+            </div>
+
+            <div class="form-group">
+                <textarea
+                    id="customerMessage"
+                    rows="4"
+                    required
+                    placeholder="Special requests or inquiries..."
+                ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">
+                Send Message
+            </button>
+
+        </form>
+
+    </div>
+</section>
+
+
+<!-- ==================== AUTH MODALS ==================== -->
+
+<!-- Authentication Backdrop -->
+<div id="authBackdrop" class="auth-backdrop"></div>
+
+
+<!-- ==================== LOGIN MODAL ==================== -->
+<div id="loginModal" class="auth-modal">
+
+    <div class="auth-modal-content">
+
+        <button
+            id="closeLoginBtn"
+            class="auth-close-btn"
+            aria-label="Close"
+        >
+            &times;
+        </button>
+
+
+        <div class="auth-header">
+
+            <div class="auth-icon">
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </div>
+
+            <h2>Welcome Back</h2>
+
+            <p>
+                Login to your Pizza Roma account
+            </p>
+
+        </div>
+
+
+        <form id="loginForm">
+
+            <div class="auth-form-group">
+
+                <label for="loginEmail">
+                    Email
+                </label>
+
+                <div class="auth-input-wrapper">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="auth-form-group">
+
+                <label for="loginPassword">
+                    Password
+                </label>
+
+                <div class="auth-input-wrapper">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="loginMessage"
+                class="auth-message"
+            ></div>
+
+
+            <button
+                type="submit"
+                class="btn btn-primary btn-block"
+            >
+
+                <i class="fa-solid fa-right-to-bracket"></i>
+
+                Login
+
+            </button>
+
+        </form>
+
+
+        <div class="auth-switch">
+
+            Don't have an account?
+
+            <button
+                type="button"
+                id="switchToRegister"
+            >
+                Create Account
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Register Modal -->
+<div id="registerModal" class="auth-modal">
+
+    <div class="auth-modal-content">
+
+        <button
+            id="closeRegisterBtn"
+            class="auth-close-btn"
+            aria-label="Close"
+        >
+            &times;
+        </button>
+
+
+        <!-- Auth Header -->
+        <div class="auth-header">
+
+            <div class="auth-icon">
+                <i class="fa-solid fa-user-plus"></i>
+            </div>
+
+            <h2>Create Account</h2>
+
+            <p>Join Pizza Roma today</p>
+
+        </div>
+
+
+        <!-- Register Form -->
+        <form id="registerForm">
+
+            <!-- Full Name -->
+            <div class="auth-form-group">
+
+                <label for="registerName">
+                    Full Name
+                </label>
+
+                <div class="auth-input-wrapper">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <input
+                        type="text"
+                        id="registerName"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Email -->
+            <div class="auth-form-group">
+
+                <label for="registerEmail">
+                    Email
+                </label>
+
+                <div class="auth-input-wrapper">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <input
+                        type="email"
+                        id="registerEmail"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Password -->
+            <div class="auth-form-group">
+
+                <label for="registerPassword">
+                    Password
+                </label>
+
+                <div class="auth-input-wrapper">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="registerPassword"
+                        placeholder="Minimum 8 characters"
+                        minlength="8"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Confirm Password -->
+            <div class="auth-form-group">
+
+                <label for="registerConfirmPassword">
+                    Confirm Password
+                </label>
+
+                <div class="auth-input-wrapper">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="registerConfirmPassword"
+                        placeholder="Confirm your password"
+                        minlength="8"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Register Message -->
+            <div
+                id="registerMessage"
+                class="auth-message"
+            ></div>
+
+
+            <!-- Submit -->
+            <button
+                type="submit"
+                class="btn btn-primary btn-block"
+            >
+                <i class="fa-solid fa-user-plus"></i>
+                Create Account
+            </button>
+
+        </form>
+
+
+        <!-- Login Switch -->
+        <div class="auth-switch">
+
+            Already have an account?
+
+            <button
+                type="button"
+                id="switchToLogin"
+            >
+                Login
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+    <!-- ==================== SHOPPING CART MODAL ==================== -->
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-modal-content">
+            <div class="cart-header">
+                <h3><i class="fa-solid fa-cart-shopping"></i> Your Order</h3>
+                <button id="closeCartBtn" class="close-btn" aria-label="Close cart">&times;</button>
+            </div>
+            <div id="cartItemsContainer" class="cart-body">
+                <!-- Dynamic Cart Items Render Here -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total-row">
+                    <span>Total Amount:</span>
+                    <span id="cartTotal">$0.00</span>
+                </div>
+                <button id="downloadInvoiceBtn" class="btn btn-outline btn-block">
+                    <i class="fa-solid fa-file-pdf"></i> Download Invoice (PDF)
+                </button>
+                <button id="checkoutBtn" class="btn btn-primary btn-block">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+    <div id="cartBackdrop" class="cart-backdrop"></div>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="site-footer">
+
+    <div class="container footer-container">
+
+        <!-- Brand -->
+        <div class="footer-col footer-brand">
+
+            <a href="#home" class="footer-logo">
+
+                <span class="footer-logo-icon">
+                    <i class="fa-solid fa-pizza-slice"></i>
+                </span>
+
+                <span>
+                    Pizza <span class="highlight">Roma</span>
+                </span>
+
+            </a>
+
+            <p class="footer-description">
+                Crafting legendary wood-fired pizzas daily with passion,
+                authentic Italian ingredients, and a love for great food.
+            </p>
+
+            <div class="footer-contact">
+
+                <a href="tel:+201000000000">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+20 100 000 0000</span>
+                </a>
+
+                <a href="mailto:info@pizzaroma.com">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>info@pizzaroma.com</span>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+
+            <h4 class="footer-title">
+                Quick Links
+            </h4>
+
+            <ul class="footer-links">
+
+                <li>
+                    <a href="#home">
+                        <i class="fa-solid fa-angle-right"></i>
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#about">
+                        <i class="fa-solid fa-angle-right"></i>
+                        About Us
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#menu">
+                        <i class="fa-solid fa-angle-right"></i>
+                        Pizza Menu
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#deals">
+                        <i class="fa-solid fa-angle-right"></i>
+                        Special Deals
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#contact">
+                        <i class="fa-solid fa-angle-right"></i>
+                        Contact
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- Opening Hours -->
+        <div class="footer-col">
+
+            <h4 class="footer-title">
+                Opening Hours
+            </h4>
+
+            <div class="opening-hours">
+
+                <div class="hours-row">
+                    <span>Monday - Thursday</span>
+                    <strong>11:00 AM - 11:00 PM</strong>
+                </div>
+
+                <div class="hours-row">
+                    <span>Friday - Saturday</span>
+                    <strong>11:00 AM - 12:00 AM</strong>
+                </div>
+
+                <div class="hours-row">
+                    <span>Sunday</span>
+                    <strong>12:00 PM - 10:00 PM</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Social -->
+        <div class="footer-col footer-social-col">
+
+            <h4 class="footer-title">
+                Follow Us
+            </h4>
+
+            <p class="social-description">
+                Follow Pizza Roma and stay updated with our latest
+                dishes, special offers, and news.
+            </p>
+
+            <div class="social-links">
+
+                <a href="#"
+                   aria-label="Facebook"
+                   class="social-facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <a href="#"
+                   aria-label="Instagram"
+                   class="social-instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#"
+                   aria-label="Twitter"
+                   class="social-twitter">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+
+                <a href="#"
+                   aria-label="TikTok"
+                   class="social-tiktok">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+
+        <div class="container footer-bottom-content">
+
+            <p>
+                &copy; 2026
+                <strong>Pizza Roma</strong>.
+                All Rights Reserved.
+            </p>
+
+            <div class="footer-bottom-links">
+
+                <a href="#">
+                    Privacy Policy
+                </a>
+
+                <span>•</span>
+
+                <a href="#">
+                    Terms & Conditions
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
