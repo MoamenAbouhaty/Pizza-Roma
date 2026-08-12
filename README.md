@@ -4,6 +4,15 @@ Express + MongoDB (Mongoose) backend for the Pizza-Roma website.
 It exposes a REST API for pizzas, weekly deals, and orders, and can also serve
 the static frontend (`index.html` / `style.css` / `script.js`) from the `public` folder.
 
+## Project Images
+
+| Images |
+| :---: |
+| ![](assets/photoOne.jpg) |
+| ![](assets/photoTwo.jpg) |
+| ![](assets/photoThree.jpg) |
+| ![](assets/photoFour.jpg) |
+
 ## Project structure
 
 ```
