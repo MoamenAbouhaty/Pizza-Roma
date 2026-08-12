@@ -32,6 +32,9 @@ the static frontend (`index.html` / `style.css` / `script.js`) from the `public`
 │   └── errorHandler.js        # Global error handler
 ├── seed/
 │   └── seed.js                # Populates MongoDB with menu & deals
+├── services/
+│   ├── auth.service.js
+│   ├── user.service.js
 ├── public/
 │   ├── index.html
 │   ├── style.css
