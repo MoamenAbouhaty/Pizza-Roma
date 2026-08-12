@@ -3136,3 +3136,47 @@ window.removeFromCart =
 
 window.addToCart =
     addToCart;
+    
+/* ============================================================
+   SCROLL REVEAL ANIMATIONS (ADD-ON)
+   Reveals elements with a fade/slide-up effect as they enter
+   the viewport while scrolling.
+============================================================ */
+
+function initScrollReveal() {
+
+    // Select all elements that should animate on scroll
+    const targets = document.querySelectorAll(
+        ".feature-card, .pizza-card, .deal-card, .about-image, .about-content"
+    );
+
+    // Add the base "hidden" state class to each target
+    targets.forEach(el => el.classList.add("reveal-on-scroll"));
+
+    // Watch each element and reveal it once it enters the viewport
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("revealed");
+                // Stop observing once revealed, no need to repeat
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    targets.forEach(el => observer.observe(el));
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    initScrollReveal();
+
+    // Re-run scroll reveal whenever the menu filter changes,
+    // since the menu grid is rebuilt with new elements
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            setTimeout(initScrollReveal, 50);
+        });
+    });
+
+});
